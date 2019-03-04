@@ -1,17 +1,17 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const ballRadius = 10;
-const x = canvas.width/2;
-const y = canvas.height-30;
-const dx = 2;
-const dy = -2;
+let x = canvas.width/2;
+let y = canvas.height-30;
+let dx = 2;
+let dy = -2;
 const paddleHeight = 10;
 const paddleWidth = 75;
-const paddleX = (canvas.width-paddleWidth)/2;
+let paddleX = (canvas.width-paddleWidth)/2;
 let rightPressed = false;
 let leftPressed = false;
-const brickRowCount = 5;
-const brickColumnCount = 3;
+let brickRowCount = 5;
+let brickColumnCount = 3;
 const brickWidth = 75;
 const brickHeight = 20;
 const brickPadding = 10;
@@ -20,7 +20,7 @@ const brickOffsetLeft = 30;
 let score = 0;
 let lives = 3;
 
-const bricks = [];
+let bricks = [];
 for(let c=0; c<brickColumnCount; c++) {
   bricks[c] = [];
   for(let r=0; r<brickRowCount; r++) {
@@ -57,9 +57,9 @@ function mouseMoveHandler(e) {
   }
 }
 function collisionDetection() {
-  for(var c=0; c<brickColumnCount; c++) {
-    for(var r=0; r<brickRowCount; r++) {
-      var b = bricks[c][r];
+  for(let c=0; c<brickColumnCount; c++) {
+    for(let r=0; r<brickRowCount; r++) {
+      let b = bricks[c][r];
       if(b.status == 1) {
         if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
           dy = -dy;
