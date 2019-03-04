@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
       this.classList.remove('up')
       scoreBoard.innerText = score
       this.removeEventListener('click', bonk)
-      setTimeout( () => {
+      setTimeout( () => { //prevents double clicking
         this.addEventListener('click', bonk)
-      }, 300)
+      }, 500)
   }
 })
