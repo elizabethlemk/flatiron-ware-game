@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // makes the moles pop up from the hole
   function peep() {
-    const time = randTime(200, 1000) //in millisecs
+    const time = randTime(300, 1000) //in millisecs
     const hole = randHole(holes)
     hole.classList.add('up')
     setTimeout( () => {
