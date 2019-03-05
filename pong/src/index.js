@@ -12,11 +12,11 @@ let rightPressed = false;
 let leftPressed = false;
 let brickRowCount = 5;
 let brickColumnCount = 3;
-const brickWidth = 75;
-const brickHeight = 20;
-const brickPadding = 10;
-const brickOffsetTop = 30;
-const brickOffsetLeft = 30;
+let brickWidth = 75;
+let brickHeight = 20;
+let brickPadding = 10;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 30;
 let score = 0;
 let lives = 3;
 
@@ -31,6 +31,15 @@ for(let c=0; c<brickColumnCount; c++) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 function keyDownHandler(e) {
     if(e.key == "Right" || e.key == "ArrowRight") {
