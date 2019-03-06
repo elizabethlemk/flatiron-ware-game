@@ -2,7 +2,7 @@
 // Loads Game CSS File
 //------------------------------------------//
 function loadCSS(url) {
-  const css = document.querySelector('link')
+  const css = document.querySelector('#game-style')
   css.href = url
 }
 //------------------------------------------//
@@ -28,6 +28,7 @@ let score = 0
 // Starts the Game
 //------------------------------------------//
 function startGame() {
+  document.querySelector('.title').remove()
   loadCSS('memory-game/style.css')
   runMemoryGame()
   // score += returnMemoryScore()

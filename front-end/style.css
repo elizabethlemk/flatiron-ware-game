@@ -1,0 +1,18 @@
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.title {
+  background-image: linear-gradient(yellow, pink);
+  height: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.title-wrapper {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 5rem;
+  padding: 10% 0;
+}

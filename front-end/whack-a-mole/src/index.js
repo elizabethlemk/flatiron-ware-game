@@ -1,6 +1,6 @@
 function runMoleGame(){
   console.log("this is whack-a-mole");
-  document.querySelector('#game-area').innerHTML = `<h1>Whack-a-mole! </h1>
+  document.querySelector('#game-area').innerHTML = `
 
 <h2>Score: <span class="score">0</span></h2>
 
