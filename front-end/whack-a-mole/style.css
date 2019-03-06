@@ -21,19 +21,6 @@ h1 {
   margin-bottom: 0;
 }
 
-button {
-  color: #ffc600;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  border-style: none;
-}
-
-button:hover {
-  background: orange;
-  color: white;
-  font-variant: small-caps;
-}
-
 h2 {
   text-align: center;
   font-size: 3rem;
