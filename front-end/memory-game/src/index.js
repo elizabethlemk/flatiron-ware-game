@@ -1,6 +1,7 @@
 function runMemoryGame() {
   console.log("this is memory game");
-  document.querySelector('body').innerHTML = `    <div class="score-board">
+  document.querySelector('#game-area').innerHTML = `
+      <div class="score-board">
         <h1>Match the cards!</h1>
         <h2>Score: <span class="score">0</span></h2>
       </div>
@@ -66,8 +67,6 @@ function runMemoryGame() {
           <img class="back-face" src="memory-game/img/js-badge.svg" alt="Memory Card">
         </div>
       </section>`
-
-
 
   //-----------------------//
   // important variables

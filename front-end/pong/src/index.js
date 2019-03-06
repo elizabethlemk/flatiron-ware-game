@@ -1,6 +1,6 @@
 function runPongGame() {
   console.log("this is pong");
-  document.querySelector('body').innerHTML = ""
+  document.querySelector('#game-area').innerHTML = ""
 
   var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
           window.setTimeout(callback, 1000 / 60)
@@ -162,7 +162,7 @@ function runPongGame() {
       }
   };
 
-  document.body.appendChild(canvas);
+  document.querySelector('#game-area').appendChild(canvas);
   animate(step);
 
   window.addEventListener("keydown", function (event) {
