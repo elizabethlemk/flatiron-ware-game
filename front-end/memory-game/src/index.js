@@ -84,9 +84,7 @@ function runMemoryGame() {
   // event listener
   //-----------------------//
     cards.forEach(card => card.addEventListener('click', flipCard))
-    function returnMemoryScore() {
-      return score
-    }
+  
   //-----------------------//
   // helper functions
   //-----------------------//
