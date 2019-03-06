@@ -1,4 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
+function runMoleGame(){
+  console.log("this is whack-a-mole");
+  document.querySelector('body').innerHTML = `<h1>Whack-a-mole! </h1>
+
+<h2>Score: <span class="score">0</span></h2>
+
+ <div class="game">
+   <div class="hole hole1">
+     <div class="mole"></div>
+   </div>
+   <div class="hole hole2">
+     <div class="mole"></div>
+   </div>
+   <div class="hole hole3">
+     <div class="mole"></div>
+   </div>
+   <div class="hole hole4">
+     <div class="mole"></div>
+   </div>
+   <div class="hole hole5">
+     <div class="mole"></div>
+   </div>
+   <div class="hole hole6">
+     <div class="mole"></div>
+   </div>
+ </div>
+
+<div class="start_button">
+  <button id="start_game">Start!</button>
+</div>`
 
   //------------------------//
   // important variables
@@ -70,4 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         this.addEventListener('click', bonk)
       }, 500)
   }
-})
+
+  function returnScore() {
+    return score
+  }
+}
