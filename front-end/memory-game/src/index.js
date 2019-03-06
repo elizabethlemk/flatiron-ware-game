@@ -84,7 +84,7 @@ function runMemoryGame() {
   // event listener
   //-----------------------//
     cards.forEach(card => card.addEventListener('click', flipCard))
-  
+
   //-----------------------//
   // helper functions
   //-----------------------//
@@ -126,7 +126,7 @@ function runMemoryGame() {
        firstCard.classList.remove('flip')
        secondCard.classList.remove('flip')
        resetBoard();
-     }, 1000)
+     }, 500)
     }
 
   // resets firstCard and secondCard variables after each round

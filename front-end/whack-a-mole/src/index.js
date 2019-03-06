@@ -24,10 +24,7 @@ function runMoleGame(){
      <div class="mole"></div>
    </div>
  </div>
-
-<div class="start_button">
-  <button id="start_game">Start!</button>
-</div>`
+`
 
   //------------------------//
   // important variables
@@ -43,7 +40,6 @@ function runMoleGame(){
   // event listeners
   //------------------------//
   moles.forEach(mole => mole.addEventListener('click', bonk))
-  document.querySelector('#start_game').addEventListener('click', startGame)
 
   //------------------------//
   // helper functions
@@ -103,4 +99,6 @@ function runMoleGame(){
   function returnScore() {
     return score
   }
+
+  startGame()
 }
