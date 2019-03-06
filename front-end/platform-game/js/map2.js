@@ -1,5 +1,5 @@
 
-function runPlatformGame() {
+function runPlatform2Game() {
   document.querySelector('#game-area').innerHTML = ""
   console.log("This is platform game");
   var config = {
@@ -32,7 +32,7 @@ function runPlatformGame() {
 
   function preload() {
       // map made with Tiled in JSON format
-      this.load.tilemapTiledJSON('map', 'platform-game/assets/map.json');
+      this.load.tilemapTiledJSON('map', 'platform-game/assets/map2.json');
       // tiles in spritesheet
       this.load.spritesheet('tiles', 'platform-game/assets/tiles.png', {frameWidth: 70, frameHeight: 70});
       // simple coin image
