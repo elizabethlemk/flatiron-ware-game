@@ -2,7 +2,6 @@ function runPongGame() {
   console.log("this is pong");
   document.querySelector('#game-area').innerHTML = `
   <h2>Lives: <span class="lives">3</span></h2>
-    <h2>Score: <span class="score">0</span></h2>
   `
 
   var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
@@ -18,7 +17,7 @@ function runPongGame() {
   var computer = new Computer();
   var ball = new Ball(200, 300);
   let lives = 3
-  let score = 0
+  let score = parseInt(document.querySelector('.score').innerText)
 
   var keysDown = {};
 
@@ -119,7 +118,7 @@ function runPongGame() {
       this.x = x;
       this.y = y;
       this.x_speed = 0;
-      this.y_speed = 13;
+      this.y_speed = 3;
   }
 
   Ball.prototype.render = function () {
@@ -148,7 +147,7 @@ function runPongGame() {
       // when AI loses
       if (this.y < 0) {
           this.x_speed = 0;
-          this.y_speed = 13;
+          this.y_speed = 3;
           this.x = 200;
           this.y = 300;
           if (lives > 0) {
@@ -160,7 +159,7 @@ function runPongGame() {
       //when you loses
       if (this.y > 600) {
           this.x_speed = 0;
-          this.y_speed = 13;
+          this.y_speed = 3;
           this.x = 200;
           this.y = 300;
           if (lives > 0) {
@@ -172,13 +171,13 @@ function runPongGame() {
 
       if (top_y > 300) {
           if (top_y < (paddle1.y + paddle1.height) && bottom_y > paddle1.y && top_x < (paddle1.x + paddle1.width) && bottom_x > paddle1.x) {
-              this.y_speed = -13;
+              this.y_speed = -3;
               this.x_speed += (paddle1.x_speed / 2);
               this.y += this.y_speed;
           }
       } else {
           if (top_y < (paddle2.y + paddle2.height) && bottom_y > paddle2.y && top_x < (paddle2.x + paddle2.width) && bottom_x > paddle2.x) {
-              this.y_speed = 13;
+              this.y_speed = 3;
               this.x_speed += (paddle2.x_speed / 2);
               this.y += this.y_speed;
           }

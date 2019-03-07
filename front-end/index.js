@@ -65,8 +65,28 @@ function startGame() {
     console.log(`marker is ${marker}. score is ${score}`);
   },20000)
 
+  setTimeout(() => {
+    score += parseInt(document.querySelector('.score').innerText)
+    killScript("#asteroids")
+    endGame()
+    marker ++
+    console.log(`marker is ${marker}. score is ${score}`);
+  },25000)
+}
+//------------------------------------------//
+// End Game
+//------------------------------------------//
+
+function endGame() {
+  document.querySelector('#game-area').innerHTML = `
+  <form id="userName">
+    <input class="input=text" type="text" name="name" placeholder="Enter your name">
+    <input type="submit" name="submit" value="Submit" class="submit">
+  </form>
+  `
 
 }
+
 
 //------------------------------------------//
 // Resets the Game

@@ -3,7 +3,6 @@ function runMemoryGame() {
   document.querySelector('#game-area').innerHTML = `
       <div class="score-board">
         <h1>Match the cards!</h1>
-        <h2>Score: <span class="score">0</span></h2>
       </div>
 
       <section class="memory-game">
@@ -113,7 +112,7 @@ function runMemoryGame() {
     function disableCards() {
      firstCard.removeEventListener('click', flipCard)
      secondCard.removeEventListener('click', flipCard)
-     score += 2
+     score += 15
      scoreBoard.innerText = score
      resetBoard();
     }
