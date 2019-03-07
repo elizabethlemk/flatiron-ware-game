@@ -61,15 +61,14 @@ function startGame() {
   setTimeout(() => {
     killScript("#pong")
     loadCSS('pong/style.css')
-    killScript('#platform')
-    // runPlatformGame()
+    runAsteroidsGame()
     // score += returnScore()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
   },20000)
 
-}
 
+}
 
 //------------------------------------------//
 // Resets the Game
@@ -83,3 +82,41 @@ function resetGame() {
   <script id="mole" src="whack-a-mole/src/index.js" type="text/javascript"></script>
   <script id="platform" src="platform-game/js/main.js" type="text/javascript"></script>`
 }
+
+//------------------------------------------//
+// Create User
+//------------------------------------------//
+
+fetch('http://localhost:3000/users',{
+  method: 'POST',
+  headers: {
+    "content-type": "application/json",
+    "accept": "application/json"
+  },
+  body: JSON.stringify (
+    {name: user.name}
+  )
+}).then(resp => resp.json()).(json => {
+  ///creates a new score
+})
+
+
+
+//------------------------------------------//
+// Posts the Score
+//------------------------------------------//
+
+fetch('http://localhost:3000/scores',{
+  method: 'POST',
+  headers: {
+    "content-type": "application/json",
+    "accept": "application/json"
+  },
+  body: JSON.stringify (
+    {user_id: user.id,
+    score: score}
+  )
+}).then(resp => resp.json()).(json => {
+
+  ///renders the score on the page somewhere
+})
