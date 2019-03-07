@@ -19,12 +19,6 @@ let marker = 0
 let score = 0
 
 //------------------------------------------//
-// Create User
-//------------------------------------------//
-
-
-
-//------------------------------------------//
 // Starts the Game
 //------------------------------------------//
 function startGame() {
@@ -74,11 +68,6 @@ function startGame() {
     console.log(`marker is ${marker}. score is ${score}`);
   },20000)
 
-  // setTimeout(() => {
-
-  //   marker++
-  //   console.log(`marker is ${marker}. score is ${score}`);
-  // },25000)
 }
 
 
