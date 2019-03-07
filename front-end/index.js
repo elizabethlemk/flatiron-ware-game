@@ -97,7 +97,7 @@ function endGame() {
 //------------------------------------------//
 function resetGame() {
   marker = 0
-  // score = 0
+  score = 0
   document.querySelector('head').innerHTML += `
   <script id="memory" src="memory-game/src/index.js" type="text/javascript"></script>
   <script id="pong" src="pong/src/index.js" type="text/javascript"></script>
@@ -128,19 +128,40 @@ function createUser(userName) {
 // Posts the Score
 //------------------------------------------//
 
-// function postScore(user, score) {
-//   fetch('http://localhost:3000/scores',{
-//     method: 'POST',
-//     headers: {
-//       "content-type": "application/json",
-//       "accept": "application/json"
-//     },
-//     body: JSON.stringify (
-//       {user_id: user.id,
-//       score: score}
-//     )
-//   }).then(resp => resp.json()).(json => {
-//
-//     ///renders the score on the page somewhere
-//   })
-// }
+function postScore(user, score) {
+  fetch('http://localhost:3000/games',{
+    method: 'POST',
+    headers: {
+      "content-type": "application/json",
+      "accept": "application/json"
+    },
+    body: JSON.stringify (
+      {user_id: user.id,
+      scores: score}
+    )
+  }).then(resp => resp.json()).(json => {
+    debugger
+    ///renders the score on the page somewhere
+    const userScores = document.querySelector('#top-user')
+    userScores.innerHTML += `
+      <li> ${json.score} </li>
+    `
+  })
+}
+
+
+//------------------------------------------//
+// Renders the Scores
+//------------------------------------------//
+
+function renderAllScores() {
+  const allScores = document.querySelector('#top-players')
+  fetch('http://localhost:3000/games')
+  .then(resp => resp.json())
+  .then(json => {
+    debugger
+    allScores.innerHTML += `
+    <li> ${json.user_id.name}           ${json.score}</li>
+    `
+  })
+}
