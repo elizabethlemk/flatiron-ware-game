@@ -1,6 +1,7 @@
 
 function runAsteroidsGame() {
   document.querySelector('#game-area').innerHTML=`
+    <h2>Score: <span class="score">0</span></h2>
    <canvas id="astroCanvas" width="700" height="500"></canvas>`
 
 
@@ -61,12 +62,15 @@ function runAsteroidsGame() {
       roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 4 )))
       roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 4 )))
       score += ROIDS_PTS_LRG;
+      document.querySelector('.score').innerText = score
     } else if (r === Math.ceil(ROIDS_SIZE / 4 )) {
       roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 8 )))
       roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 8 )))
       score += ROIDS_PTS_MED;
+      document.querySelector('.score').innerText = score
     } else {
       score += ROIDS_PTS_SMALL;
+      document.querySelector('.score').innerText = score
     }
 
     // destroy

@@ -1,6 +1,8 @@
 
 function runPlatform2Game() {
-  document.querySelector('#game-area').innerHTML = ""
+  document.querySelector('#game-area').innerHTML = `
+  <h2>Score: <span class="score">0</span></h2>`
+
   console.log("This is platform game");
   var config = {
       type: Phaser.AUTO,
@@ -23,12 +25,12 @@ function runPlatform2Game() {
 
   var game = new Phaser.Game(config);
 
-  var map;
-  var player;
-  var cursors;
-  var groundLayer, coinLayer;
-  var text;
-  var score = 0;
+  let map;
+  let player;
+  let cursors;
+  let groundLayer, coinLayer;
+  let text;
+  let score = 0;
 
   function preload() {
       // map made with Tiled in JSON format
@@ -117,6 +119,7 @@ function runPlatform2Game() {
       coinLayer.removeTileAt(tile.x, tile.y); // remove the tile/coin
       score++; // add 10 points to the score
       text.setText(score); // set the text to show the current score
+      document.querySelector('.score').innerText = score
       return false;
   }
 
