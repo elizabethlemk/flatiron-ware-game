@@ -11,8 +11,8 @@ class GamesController < ApplicationController
     render json: @game
   end
 
-  private 
+  private
   def games_params
-    params.require(:games).permit(:user_id, :score)
+    params.permit(:user_id, :scores)
   end
 end

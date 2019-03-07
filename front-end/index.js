@@ -115,12 +115,10 @@ function createUser(userName) {
       "content-type": "application/json",
       "accept": "application/json"
     },
-    body: JSON.stringify (
-      {name: userName}
-    )
-  }).then(resp => resp.json()).(json => {
+    body: JSON.stringify({name: userName})
+  }).then(resp => resp.json() ).then(json => {
     debugger
-    ///creates a new score
+    postScore(json.id, score)
   })
 }
 
@@ -136,10 +134,10 @@ function postScore(user, score) {
       "accept": "application/json"
     },
     body: JSON.stringify (
-      {user_id: user.id,
+      {user_id: user,
       scores: score}
     )
-  }).then(resp => resp.json()).(json => {
+  }).then(resp => resp.json()).then(json => {
     debugger
     ///renders the score on the page somewhere
     const userScores = document.querySelector('#top-user')
