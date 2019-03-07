@@ -2,8 +2,6 @@ function runMoleGame(){
   console.log("this is whack-a-mole");
   document.querySelector('#game-area').innerHTML = `
 
-<h2>Score: <span class="score">0</span></h2>
-
  <div class="game">
    <div class="hole hole1">
      <div class="mole"></div>
@@ -34,7 +32,7 @@ function runMoleGame(){
   const moles = document.querySelectorAll('.mole')
   let lastHole
   let timeUp = false
-  let score = 0
+  let score = parseInt(scoreBoard.innerText)
 
   //------------------------//
   // event listeners
@@ -78,8 +76,7 @@ function runMoleGame(){
   // handles event functions
   //------------------------//
   function startGame() {
-    scoreBoard.innerText = 0
-    score = 0
+    scoreBoard.innerText = score
     timeUp = false
     peep()
     setTimeout( () => timeUp = true, 10000) //the game lasts 10secs
@@ -87,7 +84,7 @@ function runMoleGame(){
 
   function bonk(event) {
     if (!event.isTrusted) return; //this prevents cheating
-      score ++
+      score += 10
       this.classList.remove('up')
       scoreBoard.innerText = score
       this.removeEventListener('click', bonk)

@@ -1,7 +1,7 @@
 
 function runAsteroidsGame() {
   document.querySelector('#game-area').innerHTML=`
-    <h2>Score: <span class="score">0</span></h2>
+
    <canvas id="astroCanvas" width="700" height="500"></canvas>`
 
 
@@ -165,7 +165,7 @@ function runAsteroidsGame() {
 
   function newGame() {
     level = 0
-    score = 0
+    score = parseInt(document.querySelector('.score').innerText)
     ship = newShip();
     newLevel();
   }

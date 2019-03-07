@@ -1,7 +1,6 @@
 
 function runPlatform2Game() {
-  document.querySelector('#game-area').innerHTML = `
-  <h2>Score: <span class="score">0</span></h2>`
+  document.querySelector('#game-area').innerHTML = ``
 
   console.log("This is platform game");
   var config = {
@@ -30,7 +29,7 @@ function runPlatform2Game() {
   let cursors;
   let groundLayer, coinLayer;
   let text;
-  let score = 0;
+  let score = parseInt(document.querySelector('.score').innerText)
 
   function preload() {
       // map made with Tiled in JSON format
