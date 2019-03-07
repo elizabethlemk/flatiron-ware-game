@@ -29,40 +29,38 @@ function startGame() {
   marker ++
   console.log(`marker is ${marker}. score is ${score}`);
   setTimeout(()=>{
-      debugger
+    score += parseInt(document.querySelector('.score').innerText)
     killScript("#memory")}, 5000)
 
   setTimeout(() => {
     runPlatform2Game()
-    // score += returnScore()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
   },5000)
 
   setTimeout(() => {
+    score += parseInt(document.querySelector('.score').innerText)
     document.querySelector('canvas').remove()
     killScript("#platform2")
     loadCSS('whack-a-mole/style.css')
     runMoleGame()
-    // score += returnScore()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
   },10000)
 
   setTimeout(() => {
+    score += parseInt(document.querySelector('.score').innerText)
     killScript("#mole")
     loadCSS('pong/style.css')
     runPongGame()
-    // score += returnScore()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
   },15000)
 
   setTimeout(() => {
+    score += parseInt(document.querySelector('.score').innerText)
     killScript("#pong")
-    loadCSS('pong/style.css')
     runAsteroidsGame()
-    // score += returnScore()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
   },20000)
@@ -75,7 +73,7 @@ function startGame() {
 //------------------------------------------//
 function resetGame() {
   marker = 0
-  score = 0
+  // score = 0
   document.querySelector('head').innerHTML += `
   <script id="memory" src="memory-game/src/index.js" type="text/javascript"></script>
   <script id="pong" src="pong/src/index.js" type="text/javascript"></script>
@@ -86,37 +84,39 @@ function resetGame() {
 //------------------------------------------//
 // Create User
 //------------------------------------------//
-
-fetch('http://localhost:3000/users',{
-  method: 'POST',
-  headers: {
-    "content-type": "application/json",
-    "accept": "application/json"
-  },
-  body: JSON.stringify (
-    {name: user.name}
-  )
-}).then(resp => resp.json()).(json => {
-  ///creates a new score
-})
-
-
+// function createUser(userName) {
+//   fetch('http://localhost:3000/users',{
+//     method: 'POST',
+//     headers: {
+//       "content-type": "application/json",
+//       "accept": "application/json"
+//     },
+//     body: JSON.stringify (
+//       {name: userName}
+//     )
+//   }).then(resp => resp.json()).(json => {
+//     debugger
+//     ///creates a new score
+//   })
+// }
 
 //------------------------------------------//
 // Posts the Score
 //------------------------------------------//
 
-fetch('http://localhost:3000/scores',{
-  method: 'POST',
-  headers: {
-    "content-type": "application/json",
-    "accept": "application/json"
-  },
-  body: JSON.stringify (
-    {user_id: user.id,
-    score: score}
-  )
-}).then(resp => resp.json()).(json => {
-
-  ///renders the score on the page somewhere
-})
+// function postScore(user, score) {
+//   fetch('http://localhost:3000/scores',{
+//     method: 'POST',
+//     headers: {
+//       "content-type": "application/json",
+//       "accept": "application/json"
+//     },
+//     body: JSON.stringify (
+//       {user_id: user.id,
+//       score: score}
+//     )
+//   }).then(resp => resp.json()).(json => {
+//
+//     ///renders the score on the page somewhere
+//   })
+// }

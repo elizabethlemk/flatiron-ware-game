@@ -95,10 +95,5 @@ function runMoleGame(){
         this.addEventListener('click', bonk)
       }, 500)
   }
-
-  function returnScore() {
-    return score
-  }
-
   startGame()
 }
