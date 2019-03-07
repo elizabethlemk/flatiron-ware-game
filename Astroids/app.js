@@ -4,10 +4,13 @@ const LASER_MAX = 10 // max amount of lasers on screen at once
 const LASER_SPEED = 500 // speed of lasers pixels per second
 const LASER_DISTANCE = 0.6;
 const LASER_EXPLOSION_DURATION = 0.1;
-const ROIDS_NUMBER = 10;
+const ROIDS_NUMBER = 5;
 const ROIDS_SIZE = 100;
 const ROIDS_JAG = 0.4
 const ROIDS_SPEED = 100;
+const ROIDS_PTS_LRG = 20;
+const ROIDS_PTS_MED = 50;
+const ROIDS_PTS_SMALL = 100;
 const ROIDS_VERT = 10;
 const FRICTION = 0.7;
 const SHIP_BLINKY = 0.1;
@@ -17,14 +20,16 @@ const SHIP_INVISBILITY = 3;
 const SHIP_THRUST = 5; // acceleration of ship in pixels per second
 const TURN_SPEED = 360;
 const SHOW_BOUNDING = false;
+const TEXT_FADE_TIME = 2.7;
+const TEXT_SIZE = 40;
 
 const canvas = document.querySelector('#astroCanvas');
 const ctx = canvas.getContext("2d");
 
 let ship = newShip();
+let level, score, roids, text, textAlpha;
+newGame();
 
-
-let roids = [];
 createAsteroid();
 // setup addEventListners
 document.addEventListener('keydown', handlerKeydown)
@@ -33,7 +38,7 @@ document.addEventListener('keyup', handlerKeyup)
 function createAsteroid(){
   roids = [];
   let x, y;
-  for (let i = 0; i < ROIDS_NUMBER; i++) {
+  for (let i = 0; i < (ROIDS_NUMBER + level); i++) {
     do {
     x = Math.floor(Math.random() * canvas.width);
     y = Math.floor(Math.random() * canvas.height);
@@ -50,14 +55,25 @@ function destroyAster(index) {
   if (r === Math.ceil(ROIDS_SIZE / 2)) {
     roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 4 )))
     roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 4 )))
+    score += ROIDS_PTS_LRG;
   } else if (r === Math.ceil(ROIDS_SIZE / 4 )) {
     roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 8 )))
     roids.push(newAsteroid(x, y, Math.ceil(ROIDS_SIZE / 8 )))
+    score += ROIDS_PTS_MED;
+  } else {
+    score += ROIDS_PTS_SMALL;
   }
 
   // destroy
 
   roids.splice(index, 1)
+
+  // new level
+
+  if (roids.length === 0) {
+    level++;
+    newLevel();
+  }
 }
 
 function distBtwnPoints(x1, y1, x2, y2) {
@@ -118,12 +134,13 @@ function handlerKeyup(event) {
 }
 
 function newAsteroid(x, y, r){
+  levelMult = 1 + 0.1 * level;
 
   const roid = {
     x: x,
     y: y,
-    xv: Math.random() * ROIDS_SPEED / FPS * (Math.random() < 0.5 ? 1 : - 1 ),
-    yv: Math.random() * ROIDS_SPEED / FPS * (Math.random() < 0.5 ? 1 : - 1 ),
+    xv: Math.random() * ROIDS_SPEED * levelMult / FPS * (Math.random() < 0.5 ? 1 : - 1 ),
+    yv: Math.random() * ROIDS_SPEED * levelMult / FPS * (Math.random() < 0.5 ? 1 : - 1 ),
     r: r,
     a: Math.random() * Math.PI / 2, // radians
     vertices: Math.floor(Math.random() * (ROIDS_VERT + 1) + ROIDS_VERT / 2),
@@ -135,6 +152,21 @@ function newAsteroid(x, y, r){
   }
   return roid;
 }
+
+
+function newGame() {
+  level = 0
+  score = 0
+  ship = newShip();
+  newLevel();
+}
+
+function newLevel() {
+  text = 'Stage ' + (level + 1)
+  textAlpha = 1.0;
+  createAsteroid();
+}
+
 
 
 function newShip() {
@@ -306,6 +338,23 @@ function update() {
     }
   }
 
+// draw game text
+
+if(textAlpha >= 0 ) {
+  ctx.textAlign = "center"
+  text.textBaseline = 'middle'
+  ctx.fillStyle = `rgba(255, 255, 255, ${textAlpha})`;
+  ctx.font = "small-caps " + TEXT_SIZE + "px dejavu sans mono";
+  ctx.fillText(text, canvas.width / 2, canvas.height * 0.75);
+  textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
+}
+  // draw score
+  ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = "yellow"
+    ctx.font =  TEXT_SIZE + "px dejavu sans mono";
+    ctx.fillText(score, canvas.width - SHIP_SIZE / 2, SHIP_SIZE);
+
   // detect
   let ax, ay, ar, lx, ly;
   for (let i = roids.length - 1; i >= 0; i--) {
@@ -454,27 +503,27 @@ if(!exploding) {
   }
 
 }
-  // move asteroids
 
 for(let i = 0; i < roids.length; i++) {
 
+  // move asteroids
   roids[i].x += roids[i].xv;
   roids[i].y += roids[i].yv;
 
 
 
   // edge of screen
+  // debugger
   if (roids[i].x < 0 - roids[i].r){
     roids[i].x = canvas.width + roids[i].r;
-  } else if(roids[i].x > canvas.width + roids[i].r) {
-    roids[i].x < 0 - roids[i].r
-  }
-
-  if (roids[i].y < 0 - roids[i].r){
+    } else if (roids[i].x > canvas.width + roids[i].r) {
+              roids[i].x = 0 - roids[i].r
+    }
+    if (roids[i].y < 0 - roids[i].r){
     roids[i].y = canvas.height + roids[i].r;
-  } else if(roids[i].x > canvas.height + roids[i].r) {
-    roids[i].y < 0 - roids[i].r
-  }
+    } else if (roids[i].x > canvas.height + roids[i].r) {
+    roids[i].y = 0 - roids[i].r
+    }
 
 }
 
