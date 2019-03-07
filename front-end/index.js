@@ -80,11 +80,15 @@ function startGame() {
 function endGame() {
   document.querySelector('#game-area').innerHTML = `
   <form id="userName">
-    <input class="input=text" type="text" name="name" placeholder="Enter your name">
+    <input class="input-text" type="text" name="name" placeholder="Enter your name">
     <input type="submit" name="submit" value="Submit" class="submit">
   </form>
   `
-
+  document.querySelector('#userName').addEventListener('submit', () => {
+    event.preventDefault()
+    const userName = event.target.querySelector('.input-text').value
+    createUser(userName)
+  })
 }
 
 
@@ -104,21 +108,21 @@ function resetGame() {
 //------------------------------------------//
 // Create User
 //------------------------------------------//
-// function createUser(userName) {
-//   fetch('http://localhost:3000/users',{
-//     method: 'POST',
-//     headers: {
-//       "content-type": "application/json",
-//       "accept": "application/json"
-//     },
-//     body: JSON.stringify (
-//       {name: userName}
-//     )
-//   }).then(resp => resp.json()).(json => {
-//     debugger
-//     ///creates a new score
-//   })
-// }
+function createUser(userName) {
+  fetch('http://localhost:3000/users',{
+    method: 'POST',
+    headers: {
+      "content-type": "application/json",
+      "accept": "application/json"
+    },
+    body: JSON.stringify (
+      {name: userName}
+    )
+  }).then(resp => resp.json()).(json => {
+    debugger
+    ///creates a new score
+  })
+}
 
 //------------------------------------------//
 // Posts the Score
