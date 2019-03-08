@@ -60,9 +60,3 @@
   text-transform: uppercase;
   margin: 0;
 }
-
-svg#ready {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}

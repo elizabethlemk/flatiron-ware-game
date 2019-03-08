@@ -26,6 +26,7 @@ renderAllScores()
 //------------------------------------------//
 function startGame() {
   document.querySelector('.title').remove()
+  document.querySelector('.scoreBoard').innerHTML = `<h2>Score: <span class="score">0</span></h2>`
   loadCSS('css-styles/loading.css')
   getReady()
 
@@ -129,19 +130,6 @@ function endGame() {
 
 
 //------------------------------------------//
-// Resets the Game
-//------------------------------------------//
-function resetGame() {
-  marker = 0
-  score = 0
-  document.querySelector('head').innerHTML += `
-  <script id="memory" src="memory-game/src/index.js" type="text/javascript"></script>
-  <script id="pong" src="pong/src/index.js" type="text/javascript"></script>
-  <script id="mole" src="whack-a-mole/src/index.js" type="text/javascript"></script>
-  <script id="platform" src="platform-game/js/main.js" type="text/javascript"></script>`
-}
-
-//------------------------------------------//
 // Create User
 //------------------------------------------//
 function createUser(userName) {
@@ -154,12 +142,18 @@ function createUser(userName) {
     body: JSON.stringify({name: userName})
   }).then(resp => resp.json() ).then(json => {
     const gameArea = document.querySelector('#game-area')
-    const userScores = document.createElement('h1')
-    gameArea.append(userScores)
-    userScores.innerText = `${json.name}:  ${score}`
-    gameArea.innerHTML += `
+    gameArea.innerHTML += `<h1 class="user-score" style="color: white; font-family: sans-serif; letter-spacing: 5px; text-transform: uppercase;">
+      ${json.name}:  ${score}
+    </h1>`
+    document.querySelector('#userName').remove()
 
-    `
+    // Creates a refresh button
+    setTimeout(() => {
+      gameArea.innerHTML += `
+        <button id="reset" onclick="window.location.reload();">Play again?</button>
+      `
+    }, 3000)
+
     postScore(json.id, score)
   })
 }

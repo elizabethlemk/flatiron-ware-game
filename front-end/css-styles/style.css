@@ -7,10 +7,14 @@
 
 .player-scores{
   text-align: center;
+  font-family: monospace;
 }
 
 .scoreBoard{
   text-align: center;
+  font-family: monospace;
+  letter-spacing: 5px;
+
 }
 
 .title {

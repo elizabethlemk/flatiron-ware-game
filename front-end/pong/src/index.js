@@ -2,6 +2,7 @@ function runPongGame() {
   console.log("this is pong");
   document.querySelector('#game-area').innerHTML = `
   <h2 style="display:none;">Lives: <span class="lives">3</span></h2>
+  <h2 style="text-align: center;">Smack that ball! </h2>
   `
 
   var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {

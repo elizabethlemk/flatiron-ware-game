@@ -1,6 +1,7 @@
 function runMoleGame(){
   console.log("this is whack-a-mole");
   document.querySelector('#game-area').innerHTML = `
+  <h2 style="text-align: center;">Hit the moles!</h2>
   <div class="game wrapper" style="height:600px;">
    <div class="game">
      <div class="hole hole1">

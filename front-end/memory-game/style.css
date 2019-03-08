@@ -2,13 +2,6 @@
   box-sizing: border-box;
 }
 
-.score {
-  background: rgba(255,255,255,0.2);
-  padding: 0 2rem;
-  line-height: 1;
-  border-radius: 1rem;
-}
-
 .score-board {
   color: black;
   text-align: center;

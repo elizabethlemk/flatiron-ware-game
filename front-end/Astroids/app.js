@@ -1,7 +1,8 @@
 
 function runAsteroidsGame() {
   document.querySelector('#game-area').innerHTML=`
-  <div style="display: flex; justify-content: center;"><canvas id="astroCanvas" width="700" height="500"></canvas> </div>
+  <div style="display: flex; justify-content: center;">
+  <canvas id="astroCanvas" width="700" height="500"></canvas> </div>
    `
 
 
@@ -104,9 +105,6 @@ function runAsteroidsGame() {
 
 
   // creating roids
-
-
-
   function handlerKeydown(event) {
     switch(event.keyCode) {
       case 32: // keycode for spacebar
@@ -171,7 +169,7 @@ function runAsteroidsGame() {
   }
 
   function newLevel() {
-    text = 'Stage ' + (level + 1)
+    text = 'Destroy the asteroids!'
     textAlpha = 1.0;
     createAsteroid();
   }
@@ -357,12 +355,12 @@ function runAsteroidsGame() {
     ctx.fillText(text, canvas.width / 2, canvas.height * 0.75);
     textAlpha -= 1.0 / TEXT_FADE_TIME / FPS;
   }
-    // draw score
-    ctx.textAlign = 'right';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = "yellow"
-      ctx.font =  TEXT_SIZE + "px dejavu sans mono";
-      ctx.fillText(score, canvas.width - SHIP_SIZE / 2, SHIP_SIZE);
+    // draw text score
+    // ctx.textAlign = 'right';
+    //   ctx.textBaseline = 'middle';
+    //   ctx.fillStyle = "yellow"
+    //   ctx.font =  TEXT_SIZE + "px dejavu sans mono";
+    //   ctx.fillText(score, canvas.width - SHIP_SIZE / 2, SHIP_SIZE);
 
     // detect
     let ax, ay, ar, lx, ly;

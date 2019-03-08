@@ -1,7 +1,8 @@
 
 function runPlatform2Game() {
   document.querySelector('#game-area').innerHTML = `
-    <div class="game-wrapper" style="display: flex; justify-content: center;"> </div>
+    <div class="game-wrapper" style="display: flex; justify-content: center;">
+     </div>
   `
 
   console.log("This is platform game");
