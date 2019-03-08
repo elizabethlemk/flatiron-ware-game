@@ -17,6 +17,9 @@ function killScript(id) {
 //------------------------------------------//
 let marker = 0
 let score = 0
+let allUsers = []
+renderAllUsers()
+renderAllScores()
 
 //------------------------------------------//
 // Starts the Game
@@ -25,60 +28,74 @@ function startGame() {
   document.querySelector('.title').remove()
   loadCSS('memory-game/style.css')
   runMemoryGame()
-  // score += returnMemoryScore()
   marker ++
   console.log(`marker is ${marker}. score is ${score}`);
+
   setTimeout(()=>{
     score += parseInt(document.querySelector('.score').innerText)
-    killScript("#memory")}, 5000)
+    killScript("#memory")
+    jelly()}, 5000)
 
   setTimeout(() => {
     runPlatform2Game()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },5000)
+  },8000)
 
-  setTimeout(() => {
+  setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     document.querySelector('canvas').remove()
     killScript("#platform2")
+    jelly()
+  }, 13000)
+
+  setTimeout(() => {
     loadCSS('whack-a-mole/style.css')
     runMoleGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },10000)
+  },16000)
 
-  setTimeout(() => {
+  setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#mole")
+    jelly()
+  }, 21000)
+
+  setTimeout(() => {
     loadCSS('pong/style.css')
     runPongGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },15000)
+  },24000)
 
-  setTimeout(() => {
+  setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#pong")
+    jelly()
+  }, 29000)
+
+  setTimeout(() => {
     runAsteroidsGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },20000)
+  },32000)
 
-  setTimeout(() => {
+  setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#asteroids")
+    loadCSS('end.css')
+    jelly()
     endGame()
-    marker ++
-    console.log(`marker is ${marker}. score is ${score}`);
-  },25000)
+  }, 35000)
 }
 //------------------------------------------//
 // End Game
 //------------------------------------------//
 
 function endGame() {
-  document.querySelector('#game-area').innerHTML = `
+  document.querySelector('.scoreBoard').remove()
+  document.querySelector('#game-area').innerHTML += `
   <form id="userName">
     <input class="input-text" type="text" name="name" placeholder="Enter your name">
     <input type="submit" name="submit" value="Submit" class="submit">
@@ -117,7 +134,11 @@ function createUser(userName) {
     },
     body: JSON.stringify({name: userName})
   }).then(resp => resp.json() ).then(json => {
-    debugger
+    const gameArea = document.querySelector('#game-area')
+    const userScores = document.createElement('h1')
+    gameArea.append(userScores)
+    userScores.innerText = `${json.name}:  ${score}`
+    document.querySelector('#userName').remove()
     postScore(json.id, score)
   })
 }
@@ -137,29 +158,83 @@ function postScore(user, score) {
       {user_id: user,
       scores: score}
     )
-  }).then(resp => resp.json()).then(json => {
-    debugger
-    ///renders the score on the page somewhere
-    const userScores = document.querySelector('#top-user')
-    userScores.innerHTML += `
-      <li> ${json.score} </li>
-    `
+  }).then(resp => resp.json())
+}
+
+//------------------------------------------//
+// Renders the Users
+//------------------------------------------//
+
+function renderAllUsers() {
+  fetch('http://localhost:3000/users')
+  .then(resp => resp.json())
+  .then(json => {
+    allUsers.push(json)
   })
 }
 
-
 //------------------------------------------//
-// Renders the Scores
+// Renders All Scores
 //------------------------------------------//
 
 function renderAllScores() {
-  const allScores = document.querySelector('#top-players')
-  fetch('http://localhost:3000/games')
-  .then(resp => resp.json())
-  .then(json => {
-    debugger
-    allScores.innerHTML += `
-    <li> ${json.user_id.name}           ${json.score}</li>
-    `
-  })
+    let sortedArr = []
+    const allScores = document.querySelector('#top-players')
+    fetch('http://localhost:3000/games')
+    .then(resp => resp.json())
+    .then(json => {
+      json.forEach(obj => {
+        const userName = allUsers[0].find(users => users.id == obj.id).name
+        sortedArr.push({name: userName, score: obj.scores})
+      })
+      sortedArr.sort((a, b) => b.score - a.score).slice(0, 10).forEach((user, index) =>
+      {  allScores.innerHTML += `
+        <li>${index + 1}. ${user.name}: ${user.score}</li>
+        `}
+      )
+    })
+}
+
+
+// Transition
+function jelly() {
+  document.querySelector('#game-area').innerHTML= `
+  <div class="jelly-container">
+  <div class="bubble-1"></div>
+  <div class="bubble-2"></div>
+  <div class="bubble-3"></div>
+  <div class="bubble-4"></div>
+  <div class="bubble-5"></div>
+  <div class="bubble-6"></div>
+  <div class="bubble-7"></div>
+  <div class="bubble-8"></div>
+  <div class="bubble-9"></div>
+  <div class="bubble-10"></div>
+  <div class="jelly-wrapper">
+  <div class="jelly-hair"></div>
+  <div class="jelly-body">
+  <div class="jelly-inner">
+  <div class="jelly-eyes"></div>
+  <div class="jelly-mouth"></div>
+  <div class="jelly-hands"></div>
+  </div>
+  </div>
+  <div class="jelly-tentacle-1"></div>
+  <div class="jelly-tentacle-2"></div>
+  <div class="jelly-tentacle-3"></div>
+  <div class="jelly-tentacle-4"></div>
+  <div class="jelly-tentacle-5"></div>
+  </div>
+  <div class="jelly-shadow"></div>
+  <div class="bubble-11"></div>
+  <div class="bubble-12"></div>
+  <div class="bubble-13"></div>
+  <div class="bubble-14"></div>
+  <div class="bubble-15"></div>
+  <div class="bubble-16"></div>
+  <div class="bubble-17"></div>
+  <div class="bubble-18"></div>
+  <div class="bubble-19"></div>
+  <div class="bubble-20"></div>
+  </div>`
 }
