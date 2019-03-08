@@ -109,19 +109,19 @@ function runPlatform2Game() {
       this.cameras.main.setBackgroundColor('#ccccff');
 
       // this text will show the score
-      text = this.add.text(20, 570, '0', {
-          fontSize: '20px',
-          fill: '#ffffff'
-      });
+      // text = this.add.text(20, 570, '0', {
+      //     fontSize: '20px',
+      //     fill: '#ffffff'
+      // });
       // fix the text to the camera
-      text.setScrollFactor(0);
+      // text.setScrollFactor(0);
   }
 
   // this function will be called when the player touches a coin
   function collectCoin(sprite, tile) {
       coinLayer.removeTileAt(tile.x, tile.y); // remove the tile/coin
-      score++; // add 10 points to the score
-      text.setText(score); // set the text to show the current score
+      score += 10; // add 10 points to the score
+      // text.setText(score); // set the text to show the current score
       document.querySelector('.score').innerText = score
       return false;
   }
@@ -161,8 +161,5 @@ function runPlatform2Game() {
       {
           player.body.setVelocityY(-700);
       }
-  }
-  function returnScore() {
-    return score
   }
 }

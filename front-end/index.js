@@ -18,6 +18,8 @@ function killScript(id) {
 let marker = 0
 let score = 0
 let allUsers = []
+let mySound = new sound('main-title.mp3')
+let endSound = new sound('end-song.mp3')
 renderAllUsers()
 renderAllScores()
 
@@ -25,6 +27,7 @@ renderAllScores()
 // Starts the Game
 //------------------------------------------//
 function startGame() {
+  mySound.play()
   document.querySelector('.title').remove()
   document.querySelector('.scoreBoard').innerHTML = `<h2>Score: <span class="score">0</span></h2>`
   loadCSS('css-styles/loading.css')
@@ -114,6 +117,8 @@ function startGame() {
 //------------------------------------------//
 
 function endGame() {
+  mySound.stop()
+  endSound.play()
   document.querySelector('.scoreBoard').remove()
   document.querySelector('#game-area').innerHTML += `
   <form id="userName">
@@ -150,7 +155,7 @@ function createUser(userName) {
     // Creates a refresh button
     setTimeout(() => {
       gameArea.innerHTML += `
-        <button id="reset" onclick="window.location.reload();">Play again?</button>
+        <button id="reset" class="bounce-top" onclick="window.location.reload();">Play again?</button>
       `
     }, 3000)
     postScore(json.id, score)
@@ -208,6 +213,25 @@ function renderAllScores() {
       )
     })
 }
+
+//------------------------------------------//
+// Music
+//------------------------------------------//
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
 //------------------------------------------//
 // Get Ready Screen
 //------------------------------------------//

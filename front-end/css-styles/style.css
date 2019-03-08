@@ -20,13 +20,10 @@
   text-align: center;
   font-family: monospace;
   letter-spacing: 5px;
-
 }
 
 .title {
-  background-image: linear-gradient(yellow, pink);
   height: 600px;
-
 }
 
 .title-wrapper {
@@ -129,28 +126,42 @@ path.two {
     }
 }
 
-
-.title {
-  overflow:hidden;
+.color-change-5x {
+	-webkit-animation: color-change-5x 8s linear infinite alternate both;
+	        animation: color-change-5x 8s linear infinite alternate both;
 }
 
-
-.drop {
-  background:-webkit-gradient(linear,0% 0%,0% 100%, from(rgba(230,255,255,1) ), to(rgba(255,255,255,0.6))  );
-  background: -moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,.6) 100%);
-	width:1px;
-	height:89px;
-	position: absolute;
-	bottom:200px;
-	-webkit-animation: fall .63s linear infinite;
-  -moz-animation: fall .63s linear infinite;
-
+@-webkit-keyframes color-change-5x {
+  0% {
+    background: #19dcea;
+  }
+  25% {
+    background: #b22cff;
+  }
+  50% {
+    background: #ea2222;
+  }
+  75% {
+    background: #f5be10;
+  }
+  100% {
+    background: #3bd80d;
+  }
 }
-
-/* animate the drops*/
-@-webkit-keyframes fall {
-	to {margin-top:900px;}
-}
-@-moz-keyframes fall {
-	to {margin-top:900px;}
+@keyframes color-change-5x {
+  0% {
+    background: #19dcea;
+  }
+  25% {
+    background: #b22cff;
+  }
+  50% {
+    background: #ea2222;
+  }
+  75% {
+    background: #f5be10;
+  }
+  100% {
+    background: #3bd80d;
+  }
 }
