@@ -11,6 +11,11 @@
   font-family: monospace;
 }
 
+.player-scores ul{
+  list-style: none;
+  margin: 0;
+}
+
 .scoreBoard{
   text-align: center;
   font-family: monospace;
