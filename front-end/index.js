@@ -18,15 +18,21 @@ function killScript(id) {
 let marker = 0
 let score = 0
 let allUsers = []
+let menuSong = new sound('menu.mp3')
 let mySound = new sound('main-title.mp3')
 let endSound = new sound('end-song.mp3')
 renderAllUsers()
 renderAllScores()
+//
+
+// document.addEventListener('DOMContentLoaded', ()=> menuSong.play())
+
 
 //------------------------------------------//
 // Starts the Game
 //------------------------------------------//
 function startGame() {
+  menuSong.stop()
   mySound.play()
   document.querySelector('.title').remove()
   document.querySelector('.scoreBoard').innerHTML = `<h2>Score: <span class="score">0</span></h2>`
@@ -46,14 +52,14 @@ function startGame() {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#memory")
     loadCSS('css-styles/loading.css')
-    getReady()}, 8000)
+    getReady()}, 13000)
 
 // Run Platform Game -- Transition
   setTimeout(() => {
     runPlatform2Game()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },11000)
+  },16000)
 
 // Kills Platform Game -- Transition
   setTimeout(()=> {
@@ -62,7 +68,7 @@ function startGame() {
     killScript("#platform2")
     loadCSS('css-styles/loading.css')
     getReady()
-  }, 16000)
+  }, 26000)
 
 // Run Whack-A-Mole
   setTimeout(() => {
@@ -70,7 +76,7 @@ function startGame() {
     runMoleGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },19000)
+  },29000)
 
 // Kills Whack-A-Mole -- Transition
   setTimeout(()=> {
@@ -78,7 +84,7 @@ function startGame() {
     killScript("#mole")
     loadCSS('css-styles/loading.css')
     getReady()
-  }, 24000)
+  }, 39000)
 
 // Run Pong
   setTimeout(() => {
@@ -86,7 +92,7 @@ function startGame() {
     runPongGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },27000)
+  },42000)
 
 // Kill Pong -- Transition
   setTimeout(()=> {
@@ -94,14 +100,14 @@ function startGame() {
     killScript("#pong")
     loadCSS('css-styles/loading.css')
     getReady()
-  }, 32000)
+  }, 52000)
 
 // Run Asteroids
   setTimeout(() => {
     runAsteroidsGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },35000)
+  },55000)
 
 // Kill Asteroids -- Input Name && Final Score
   setTimeout(()=> {
@@ -110,7 +116,7 @@ function startGame() {
     loadCSS('css-styles/end.css')
     jelly()
     endGame()
-  }, 40000)
+  }, 65000)
 }
 //------------------------------------------//
 // End Game
@@ -177,7 +183,11 @@ function postScore(user, score) {
       {user_id: user,
       scores: score}
     )
-  }).then(resp => resp.json())
+  }).then(resp => resp.json()).then(json => {
+    renderAllUsers()
+    document.querySelector('#top-players').innerHTML = ""
+    renderAllScores()
+  })
 }
 
 //------------------------------------------//
