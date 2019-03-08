@@ -157,7 +157,9 @@ function createUser(userName) {
     const userScores = document.createElement('h1')
     gameArea.append(userScores)
     userScores.innerText = `${json.name}:  ${score}`
-    document.querySelector('#userName').remove()
+    gameArea.innerHTML += `
+
+    `
     postScore(json.id, score)
   })
 }
@@ -213,8 +215,9 @@ function renderAllScores() {
       )
     })
 }
-
+//------------------------------------------//
 // Get Ready Screen
+//------------------------------------------//
 function getReady() {
   document.querySelector('#game-area').innerHTML= `
   <svg id="ready" viewBox="0 0 600 300">
@@ -232,7 +235,9 @@ function getReady() {
   </svg>`
 }
 
-// Transition
+//------------------------------------------//
+// Jelly Screen
+//------------------------------------------//
 function jelly() {
   document.querySelector('#game-area').innerHTML= `
   <div class="jelly-container">

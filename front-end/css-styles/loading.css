@@ -55,8 +55,14 @@
 
 #game-area {
   background: #111;
-  height:600px;
+  background-size: 600px;
   font: 5.5em/1 Open Sans, Impact;
   text-transform: uppercase;
   margin: 0;
+}
+
+svg#ready {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
