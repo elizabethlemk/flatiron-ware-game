@@ -26,68 +26,87 @@ renderAllScores()
 //------------------------------------------//
 function startGame() {
   document.querySelector('.title').remove()
-  loadCSS('memory-game/style.css')
-  runMemoryGame()
-  marker ++
-  console.log(`marker is ${marker}. score is ${score}`);
+  loadCSS('css-styles/loading.css')
+  getReady()
 
+  // Runs Memory Game
+  setTimeout(()=>{
+    loadCSS('memory-game/style.css')
+    runMemoryGame()
+    marker ++
+    console.log(`marker is ${marker}. score is ${score}`);
+  }, 3000)
+
+// Kills Memory Game
   setTimeout(()=>{
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#memory")
-    jelly()}, 5000)
+    loadCSS('css-styles/loading.css')
+    getReady()}, 8000)
 
+// Run Platform Game -- Transition
   setTimeout(() => {
     runPlatform2Game()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },8000)
+  },11000)
 
+// Kills Platform Game -- Transition
   setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     document.querySelector('canvas').remove()
     killScript("#platform2")
-    jelly()
-  }, 13000)
+    loadCSS('css-styles/loading.css')
+    getReady()
+  }, 16000)
 
+// Run Whack-A-Mole
   setTimeout(() => {
     loadCSS('whack-a-mole/style.css')
     runMoleGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },16000)
+  },19000)
 
+// Kills Whack-A-Mole -- Transition
   setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#mole")
-    jelly()
-  }, 21000)
+    loadCSS('css-styles/loading.css')
+    getReady()
+  }, 24000)
 
+// Run Pong
   setTimeout(() => {
     loadCSS('pong/style.css')
     runPongGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },24000)
+  },27000)
 
+// Kill Pong -- Transition
   setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#pong")
-    jelly()
-  }, 29000)
+    loadCSS('css-styles/loading.css')
+    getReady()
+  }, 32000)
 
+// Run Asteroids
   setTimeout(() => {
     runAsteroidsGame()
     marker ++
     console.log(`marker is ${marker}. score is ${score}`);
-  },32000)
+  },35000)
 
+// Kill Asteroids -- Input Name && Final Score
   setTimeout(()=> {
     score += parseInt(document.querySelector('.score').innerText)
     killScript("#asteroids")
-    loadCSS('end.css')
+    loadCSS('css-styles/end.css')
     jelly()
     endGame()
-  }, 35000)
+  }, 40000)
 }
 //------------------------------------------//
 // End Game
@@ -195,6 +214,23 @@ function renderAllScores() {
     })
 }
 
+// Get Ready Screen
+function getReady() {
+  document.querySelector('#game-area').innerHTML= `
+  <svg id="ready" viewBox="0 0 600 300">
+    <symbol id="s-text">
+      <text text-anchor="middle"
+              x="50%" y="50%" dy=".30em">
+         Get Ready
+       </text>
+    </symbol>
+    <use xlink:href="#s-text" class="text"></use>
+    <use xlink:href="#s-text" class="text"></use>
+    <use xlink:href="#s-text" class="text"></use>
+    <use xlink:href="#s-text" class="text"></use>
+    <use xlink:href="#s-text" class="text"></use>
+  </svg>`
+}
 
 // Transition
 function jelly() {

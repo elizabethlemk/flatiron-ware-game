@@ -2,14 +2,6 @@
   box-sizing: border-box;
 }
 
-h1 {
-  text-align: center;
-  font-size: 5rem;
-  line-height: 1;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .score {
   background: rgba(255,255,255,0.2);
   padding: 0 2rem;
@@ -18,7 +10,7 @@ h1 {
 }
 
 .score-board {
-  color: white;
+  color: black;
   text-align: center;
   margin: 2rem;
 }

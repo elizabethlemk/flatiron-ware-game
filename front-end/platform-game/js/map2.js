@@ -1,12 +1,15 @@
 
 function runPlatform2Game() {
-  document.querySelector('#game-area').innerHTML = ``
+  document.querySelector('#game-area').innerHTML = `
+    <div class="game-wrapper" style="display: flex; justify-content: center;"> </div>
+  `
 
   console.log("This is platform game");
   var config = {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
+      parent: document.querySelector('.game-wrapper'),
       physics: {
           default: 'arcade',
           arcade: {

@@ -1,8 +1,8 @@
 
 function runAsteroidsGame() {
   document.querySelector('#game-area').innerHTML=`
-
-   <canvas id="astroCanvas" width="700" height="500"></canvas>`
+  <div style="display: flex; justify-content: center;"><canvas id="astroCanvas" width="700" height="500"></canvas> </div>
+   `
 
 
   const FPS = 30;   //frames per second
