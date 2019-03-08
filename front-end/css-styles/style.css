@@ -6,6 +6,7 @@
 }
 
 .player-scores{
+  padding: 20px;
   text-align: center;
   font-family: monospace;
 }

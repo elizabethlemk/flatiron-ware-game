@@ -153,7 +153,6 @@ function createUser(userName) {
         <button id="reset" onclick="window.location.reload();">Play again?</button>
       `
     }, 3000)
-
     postScore(json.id, score)
   })
 }

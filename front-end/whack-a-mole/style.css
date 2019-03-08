@@ -1,5 +1,8 @@
-
-
+#game-area{
+  background-image: url('bg-img.jpg');
+  height: 700px;
+  color:white;
+}
 
 .game {
   width: 600px;

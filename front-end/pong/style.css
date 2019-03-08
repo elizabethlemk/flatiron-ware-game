@@ -3,14 +3,20 @@
   margin: 0;
 }
 
+
 canvas {
   background: #eee;
   display: block;
   margin: 0 auto;
 }
 
-h1 {
-  text-align: center;
-  font-size: 5rem;
-  padding: 2rem;
+#game-area{
+  background-image: url('bg-img.jpg');
+  height: 650px;
+}
+
+#game-area h2{
+  color: white;
+  font-family: sans-serif;
+  letter-spacing: 5px;
 }

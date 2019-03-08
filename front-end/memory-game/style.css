@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+#game-area{
+  background-color: #ffcc32;
+  height:800px;
+}
+
 .score-board {
   color: black;
   text-align: center;
