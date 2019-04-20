@@ -7,7 +7,9 @@ The goal of the game is to get as many points as you can!
 ### Built on
 
 Javascript 
+
 Phaser
+
 Ruby on Rails 
 
 ### Contributors
